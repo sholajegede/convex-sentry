@@ -42,7 +42,7 @@
     "prepublishOnly": "npm whoami || npm login",
     "alpha": "npm version prerelease --preid alpha && npm publish --tag alpha && git push --follow-tags",
     "release": "npm version patch && npm publish && git push --follow-tags",
-    "version": "vim -c 'normal o' -c 'normal o## '$npm_package_version CHANGELOG.md && prettier -w CHANGELOG.md && git add CHANGELOG.md"
+    "version": "node -e \"const f='src/component/shared.ts',fs=require('fs');fs.writeFileSync(f,fs.readFileSync(f,'utf8').replace(/SDK_VERSION = \\\"[^\\\"]*\\\"/,'SDK_VERSION = \\\"'+process.env.npm_package_version+'\\\"'))\" && git add src/component/shared.ts && vim -c 'normal o' -c 'normal o## '$npm_package_version CHANGELOG.md && prettier -w CHANGELOG.md && git add CHANGELOG.md"
   },
   "files": [
     "dist",
