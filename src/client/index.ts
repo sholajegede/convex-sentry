@@ -85,7 +85,8 @@ export type ExceptionValue = {
 export type SentryEvent = {
   event_id: string;
   timestamp: number;
-  platform: "javascript";
+  platform: "node";
+  transaction?: string;
   level: Level;
   logger: string;
   server_name: string;
@@ -258,7 +259,8 @@ export class Sentry {
     let event: SentryEvent | null = {
       event_id: randomHex(16),
       timestamp: now / 1000,
-      platform: "javascript",
+      platform: "node",
+      transaction: context.functionName,
       level: input.level,
       logger: "convex",
       server_name: this.options.serverName ?? "convex",

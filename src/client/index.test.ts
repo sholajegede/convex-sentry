@@ -167,7 +167,8 @@ describe("Sentry client", () => {
     const event = payload();
     expect(event).toMatchObject({
       event_id: id,
-      platform: "javascript",
+      platform: "node",
+      transaction: "orders:charge",
       level: "error",
       environment: "production",
       release: "app@1.2.3",
